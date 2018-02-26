@@ -16,10 +16,10 @@ class Password:
         return f'Password({self.num_words})'
     
     def __str__(self):
-        return f'Password object created with {self.num_words} words'
+        return f'Password object created with {self.num_words} randomly chosen words'
 
     def __len__(self):
-        return self.num_words
+        return len(self.password)
 
     @staticmethod
     def load_words():
@@ -41,6 +41,6 @@ class Password:
     def get_words(self):
         return dict(self.words)
 
-    def password(self):
+    def get_password(self):
         return self.password[:]
 

@@ -4,6 +4,7 @@ import unittest
 import classes
 import functions
 
+
 PASSWORD_LENGTH = 2
 TEST_DICT = 'test_dict'
 
@@ -38,8 +39,7 @@ class TestPasswordGen(BaseUnitTest):
 
     def test_magic_methods(self):
         pw = classes.Password(PASSWORD_LENGTH)
-        self.assertEqual(pw.__str__(), 'Password object created with 2 words')
-        self.assertEqual(pw.__len__(), PASSWORD_LENGTH)
+        self.assertEqual(pw.__str__(), 'Password object created with 2 randomly chosen words')
         self.assertEqual(pw.__repr__(), 'Password(2)')
         
     def test_getter_setter(self):
@@ -49,7 +49,7 @@ class TestPasswordGen(BaseUnitTest):
         self.assertEqual(pw.get_num_words(), 3)
 
     def test_password(self):
-        pw = classes.Password(PASSWORD_LENGTH).password
+        pw = classes.Password(PASSWORD_LENGTH).get_password()
         self.assertTypeEqual(pw, '')
         self.assertEqual(PASSWORD_LENGTH, len(pw.split(' ')))
 
