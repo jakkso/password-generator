@@ -1,5 +1,5 @@
 from os import path
-from pickle import load
+import pickle
 import secrets
 
 DIR_PATH = path.dirname(path.abspath(__file__))
@@ -26,17 +26,21 @@ class Password:
 
     @staticmethod
     def load_words():
+        """
+        :return: un-pickled dictionary of words
+        """
         with open(path.join(DIR_PATH, 'word_dict'), 'rb') as file:
-            return load(file)
+            return pickle.load(file)
+
+    def generate_password(self):
+        """
+        :return: a joined string of randomly selected words from self.words
+        of the length of self.num_words
+        """
+        return ' '.join([secrets.choice(self.words) for i in range(self.num_words)])
 
     def get_num_words(self):
         return self.num_words
-
-    def generate_password(self):
-        password = []
-        for i in range(self.num_words):
-            password.append(secrets.choice(self.words))
-        return ' '.join(password)
 
     def set_num_words(self, num):
         self.num_words = num
@@ -46,4 +50,3 @@ class Password:
 
     def get_password(self):
         return self.password[:]
-
