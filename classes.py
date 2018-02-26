@@ -1,5 +1,8 @@
+from os import path
 from pickle import load
 import secrets
+
+DIR_PATH = path.dirname(path.abspath(__file__))
 
 
 class Password:
@@ -23,7 +26,7 @@ class Password:
 
     @staticmethod
     def load_words():
-        with open('word_dict', 'rb') as file:
+        with open(path.join(DIR_PATH, 'word_dict'), 'rb') as file:
             return load(file)
 
     def get_num_words(self):
